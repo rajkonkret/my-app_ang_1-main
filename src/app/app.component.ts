@@ -6,7 +6,7 @@ import { Component, OnDestroy } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnDestroy{
-  title = 'my-app';
+  title = 'my-Learn';
   description = 'Hej Angular';
   ngOnDestroy(): void {
     
