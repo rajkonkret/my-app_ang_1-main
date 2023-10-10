@@ -1,0 +1,23 @@
+<div *ngIf="product">
+<h2>Product Details</h2>
+<h3>{{product.name}}</h3>
+<h4>{{ product.price | currency:'EUR'}}</h4>
+<div [ngSwitch]="product.name">
+    <p *ngSwitchCase="'Webcam'">
+        Kamerka internetowa 3MB
+    </p>
+    <p *ngSwitchCase="'ipad'">
+        Super drogi produkt Apple
+    </p>
+    <p *ngSwitchDefault>
+        Produkt samsunga lub coś innego...
+    </p>
+</div>
+<button (click)="buy()">KUP TERAZ!</button>
+</div>
+<!-- <div [hidden]="!name">
+    <h2>Product Details</h2>
+    <h3>{{name}}</h3>
+    <h3>{{ productName }}</h3>
+    <button (click)="buy()">KUP TERAZ!</button>
+    </div> -->
