@@ -1,9 +1,11 @@
 <h2>Product List</h2>
 <ul>
-    <li *ngFor="let product of products | slice:0:1" (click)="selectedProduct = product">
-        {{ product.name | json }}
+    <li *ngFor="let product of (products$ | async) ; let i=index" 
+    (click)="selectedProduct = product">
+        <!-- {{ product.name | json }} -->
         <!-- {{ product.name | uppercase }} -->
         <!-- {{ product.name | lowercase }} -->
+        <app-product-view [id]="i"></app-product-view>
     </li>
 </ul>
 <app-product-detail 
@@ -15,3 +17,7 @@
 <p>Nie wybrano produktu!</p>
 <p>{{ today | date:'fullDate' }}</p>
 </ng-template>
+<h3>Oferty</h3>
+<ng-template appProductHost></ng-template>
+<h2>Ulubione</h2>
+<app-favorites></app-favorites>

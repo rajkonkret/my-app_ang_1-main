@@ -1,28 +1,21 @@
-import { Component } from '@angular/core';
+import { Component , OnInit, OnDestroy} from '@angular/core';
 import { Product } from '../product';
+import { ProductsService } from '../products.service';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  providers: [ProductsService]
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   today = new Date()
   selectedProduct: Product | undefined
-  products: Product[] = [
-    {
-      name:'Webcam',
-      price: 100
-    },
-    {
-     name: 'ipad',
-     price: 3000
-    },
-    {
-      name: 'samsung',
-      price: 6565
-    }
-  ]
+  // products: Product[] =   []
+  products$: Observable<Product[]> | undefined;
+  private productStub: Subscription | undefined;
+
   onBuy(){
     window.alert(`Zakupiłeś ${this.selectedProduct?.name}!`)
   }
@@ -35,7 +28,25 @@ export class ProductListComponent {
   //   'Microphone': 200,
   //   'Wireless keyboard': 85
   // };
+  constructor(private productService: ProductsService) {
   
+  }
+
+  private getProducts() {
+    // this.productStub = this.productService.getProducts().subscribe(products => {
+    //   this.products = products;
+    // })
+    this.products$ = this.productService.getProducts();
+  }
+  ngOnInit(): void {
+    // this.products = this.productService.getProducts();
+    this.getProducts();
+    }
+
+  ngOnDestroy(): void {
+    this.productStub?.unsubscribe();
+  }
+
+  }
 
 
-}

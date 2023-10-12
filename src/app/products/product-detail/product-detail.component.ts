@@ -37,10 +37,12 @@ export class ProductDetailComponent implements OnChanges{
 
   buy() {
     this.bought.emit();
-  }
-  // get productName(): string {
-  //   console.log(` Pobierz ${this.name}`)
-  //   return this.name
   // }
+  // get productName(): string {
+  //   console.log(` Pobierz ${this.productName}`)
+  //   return this.productName;
+  // }
+  
  
+}
 }
